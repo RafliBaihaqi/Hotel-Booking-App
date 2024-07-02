@@ -5,6 +5,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Layout from "./layout/layout";
+import Register from "./pages/register";
 
 const App = () => {
   return (
@@ -23,6 +24,14 @@ const App = () => {
           element={
             <Layout>
               <p>Search Page</p>
+            </Layout>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <Layout>
+              <Register />
             </Layout>
           }
         />

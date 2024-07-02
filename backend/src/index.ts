@@ -3,6 +3,8 @@ import "dotenv/config";
 import cors from 'cors';
 import mongoose from 'mongoose';
 import userRoutes from './routes/users';
+import authRoutes from './routes/auth'
+
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
@@ -22,6 +24,7 @@ app.use(cors());
 //Handle user routes
 app.use("/api/users", userRoutes);
 
+app.use("/api/auth", authRoutes);
 app.listen(5000, () => {
     console.log("Server is running on port 5000");
 });
