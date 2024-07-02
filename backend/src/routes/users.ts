@@ -50,7 +50,7 @@ router.post(
       });
 
       // Send the user object as response
-      return res.sendStatus(200);
+      return res.status(200).send({message: "User Registered!"})
     } catch (error) {
       console.log(error);
       return res.status(500).json({ message: "Oops! Something went wrong" });
