@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useMutation } from "react-query";
-import * as apiClient  from '../api-clients'; //impprt function from api-clients as variables
-
+import * as apiClient from "../api-clients"; //impprt function from api-clients as variables
+import { useAppCOntext } from "../contexts/AppContext";
 
 //Step 1: Create form type
 export type RegisterFormData = {
@@ -14,6 +14,7 @@ export type RegisterFormData = {
 
 //Step 2: Define Functional Compoenent that will be used in the form
 const Register = () => {
+  const { showToast } = useAppCOntext();
   const {
     register,
     watch,
@@ -21,14 +22,14 @@ const Register = () => {
     formState: { errors },
   } = useForm<RegisterFormData>();
 
-const mutation = useMutation(apiClient.register, {
+  const mutation = useMutation(apiClient.register, {
     onSuccess: () => {
-        console.log("registration succesful!")
-    }, 
-    onError: (error: Error) => {
-        console.log(error.message);
+      showToast({ message: "Registration Success!", type: "SUCCESS" });
     },
-})
+    onError: (error: Error) => {
+      showToast({ message: error.message, type: "ERROR" });
+    },
+  });
 
   //Step 4:Create Submit Functions
   const onSubmit = handleSubmit((data) => {
@@ -69,8 +70,8 @@ const mutation = useMutation(apiClient.register, {
           {...register("email", { required: "This Field Is Required" })}
         ></input>
         {errors.email && (
-            <span className="text-red-500">{errors.email.message} </span>
-          )}
+          <span className="text-red-500">{errors.email.message} </span>
+        )}
       </label>
       <label className="text-grey-700 text-sm font-bold flex-1">
         Password
@@ -86,8 +87,8 @@ const mutation = useMutation(apiClient.register, {
           })}
         ></input>
         {errors.password && (
-            <span className="text-red-500">{errors.password.message} </span>
-          )}
+          <span className="text-red-500">{errors.password.message} </span>
+        )}
       </label>
       <label className="text-grey-700 text-sm font-bold flex-1">
         Confirm Password
@@ -105,8 +106,10 @@ const mutation = useMutation(apiClient.register, {
           })}
         ></input>
         {errors.confirmPassword && (
-            <span className="text-red-500">{errors.confirmPassword.message} </span>
-          )}
+          <span className="text-red-500">
+            {errors.confirmPassword.message}{" "}
+          </span>
+        )}
       </label>
       <span>
         <button
