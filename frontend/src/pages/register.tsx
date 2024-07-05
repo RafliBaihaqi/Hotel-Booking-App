@@ -18,11 +18,12 @@ const Register = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const { showToast } = useAppContext();
+  
   const {
     register,
     watch,
     handleSubmit,
-    formState: { errors },
+    formState: { errors },  
   } = useForm<RegisterFormData>();
 
   const mutation = useMutation(apiClient.register, {

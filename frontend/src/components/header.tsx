@@ -4,6 +4,7 @@ import SignOutButton from "./SignOutButton";
 
 const Header = () => {
   const { isLoggedIn } = useAppContext();
+  
   return (
     <div className="bg-blue-800 py-6">
       <div className="container mx-auto flex justify-between">
@@ -15,7 +16,7 @@ const Header = () => {
             <>
               <Link className="flex items-center text-white px-3 font-bold hover:bg-blue-600" to="/my-bookings">My Bookings</Link>
               <Link className="flex items-center text-white px-3 font-bold hover:bg-blue-600" to="/my-hotels">My Hotels</Link>
-              <SignOutButton/>
+              <SignOutButton />
             </>
           ) : (
             <Link

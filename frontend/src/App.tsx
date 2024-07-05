@@ -4,9 +4,10 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+
 import Layout from "./layout/layout";
 import Register from "./pages/register";
-import Signin from "./pages/Signin";
+import SignIn from "./pages/Signin";
 
 const App = () => {
   return (
@@ -40,7 +41,7 @@ const App = () => {
           path="/sign-in"
           element={
             <Layout>
-              <Signin />
+              <SignIn />
             </Layout>
           }
         />

@@ -1,17 +1,18 @@
 import { SignInFormData } from "./pages/Signin";
 import { RegisterFormData } from "./pages/register";
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "";
+const API_BASE_URL = "" || import.meta.env.VITE_API_BASE_URL;
 
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
     method: "POST",
     credentials: "include",
     headers: {
-      "content-type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   });
+
   const responseBody = await response.json();
 
   if (!response.ok) {
@@ -20,34 +21,32 @@ export const register = async (formData: RegisterFormData) => {
 };
 
 //Request to login api to validate the form data
-export const Signin = async (formData: SignInFormData) => {
+export const signIn = async (formData: SignInFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
     method: "POST",
     credentials: "include",
     headers: {
-      "content-type": "application/json",
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   });
-  const responseBody = await response.json();
 
+  const body = await response.json();
   if (!response.ok) {
-    throw new Error(responseBody.message);
+    throw new Error(body.message);
   }
+  return body;
 };
 
-//Make request to validate-token api to make sure the token is valid
-/**
-The primary purpose of this function is to check if the user's current authentication token is valid. 
-This can be used to verify user authentication status before allowing access to protected routes or resources in the application
- */
 export const validateToken = async () => {
   const response = await fetch(`${API_BASE_URL}/api/auth/validate-token`, {
     credentials: "include",
   });
+
   if (!response.ok) {
-    throw new Error("Token Invalid");
+    throw new Error("Token invalid");
   }
+
   return response.json();
 };
 

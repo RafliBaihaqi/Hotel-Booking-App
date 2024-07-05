@@ -26,10 +26,6 @@ app.use(
   })
 );
 
-// app.get("/test", async (req: Request, res: Response) => {
-//     res.json({message: "Testing API with Express and TypeScript."});
-// });
-
 //Handle user routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);

@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from "react-query";
 const SignOutButton = () => {
   const queryClient = useQueryClient();
   const { showToast } = useAppContext();
-  
+
   const mutation = useMutation(apiClient.signOut, {
     onSuccess: async () => {
       await queryClient.invalidateQueries("validateToken");
@@ -19,10 +19,11 @@ const SignOutButton = () => {
   const handleClick = () => {
     mutation.mutate();
   };
+  
   return (
     <button
-      className="text-blue-600 px-3 font-bold bg-white hover:bg-gray-100"
       onClick={handleClick}
+      className="text-blue-600 px-3 font-bold bg-white hover:bg-gray-100"
     >
       Sign Out
     </button>
