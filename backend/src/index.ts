@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL || "https://mern-booking-app-3qdq.onrender.com",
+    origin: "https://mern-booking-app-3qdq.onrender.com"  || process.env.FRONTEND_URL,
     credentials: true,
   })
 );
