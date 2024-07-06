@@ -24,6 +24,7 @@ mongoose
 // Create express instance
 const app = express();
 const FRONTEND_URL = "" || process.env.FRONTEND_URL;
+const port = 5000 || "";
 //Set up API body as json object
 app.use(express.json());
 app.use(cookieParser());
@@ -47,6 +48,6 @@ app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 });
 
-app.listen(5000, () => {
-  console.log("Server is running on port 5000");
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
