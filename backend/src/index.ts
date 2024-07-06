@@ -7,17 +7,19 @@ import authRoutes from "./routes/auth";
 import myHotelsRoutes from "./routes/my-hotels"; // Import myHotelsRoutes module
 import cookieParser from "cookie-parser";
 import path from "path";
-import {v2 as cloudinary} from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
-})
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string).then(() => 
-  console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING)
-);
+mongoose
+  .connect(process.env.MONGODB_CONNECTION_STRING as string)
+  .then(() =>
+    console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING)
+  );
 
 // Create express instance
 const app = express();
@@ -33,6 +35,8 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, "../../frontend/dist"))); //Serve static assets
+
 //Handle user routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
@@ -40,9 +44,9 @@ app.use("/api/my-hotels", myHotelsRoutes);
 
 //Pass on any req to our url that are not endpoint and let the react-router-dom handle them
 app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname,"../../frontend/dist/index.html"));
-})
-;app.use(express.static(path.join(__dirname,"../../frontend/dist")));//Serve static assets
+  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+});
+
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
