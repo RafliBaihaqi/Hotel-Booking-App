@@ -2,7 +2,7 @@ import { SignInFormData } from "./pages/Signin";
 import { RegisterFormData } from "./pages/register";
 import { HotelSearchResponse, HotelType } from "../../backend/src/shared/types";
 
-const API_BASE_URL = "" || import.meta.env.VITE_API_BASE_URL;
+const API_BASE_URL = "";
 //|| import.meta.env.VITE_API_BASE_URL
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
@@ -123,7 +123,7 @@ export type SearchParams = {
 export const searchHotels = async (
   searchParams: SearchParams
 ): Promise<HotelSearchResponse> => {
-  const queryParams = new URLSearchParams();
+  const queryParams = new  URLSearchParams();
   queryParams.append("destination", searchParams.destination || "");
   queryParams.append("checkIn", searchParams.checkIn || "");
   queryParams.append("checkOut", searchParams.checkOut || "");
