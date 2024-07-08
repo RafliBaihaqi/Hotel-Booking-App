@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import myHotelsRoutes from "./routes/my-hotels"; // Import myHotelsRoutes module
+import hotelRoutes from "./routes/hotels"; // Import hotelRoutes
 import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
@@ -41,7 +42,7 @@ app.use(express.static(path.join(__dirname, "../../frontend/dist"))); //Serve st
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/my-hotels", myHotelsRoutes);
-
+app.use("/api/hotels", hotelRoutes);
 //Pass on any req to our url that are not endpoint and let the react-router-dom
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
