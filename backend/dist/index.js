@@ -10,6 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const users_1 = __importDefault(require("./routes/users"));
 const auth_1 = __importDefault(require("./routes/auth"));
 const my_hotels_1 = __importDefault(require("./routes/my-hotels")); // Import myHotelsRoutes module
+const hotels_1 = __importDefault(require("./routes/hotels")); // Import hotelRoutes
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
 const cloudinary_1 = require("cloudinary");
@@ -36,6 +37,7 @@ app.use(express_1.default.static(path_1.default.join(__dirname, "../../frontend/
 app.use("/api/users", users_1.default);
 app.use("/api/auth", auth_1.default);
 app.use("/api/my-hotels", my_hotels_1.default);
+app.use("/api/hotels", hotels_1.default);
 //Pass on any req to our url that are not endpoint and let the react-router-dom
 app.get("*", (req, res) => {
     res.sendFile(path_1.default.join(__dirname, "../../frontend/dist/index.html"));
