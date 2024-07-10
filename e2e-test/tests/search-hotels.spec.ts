@@ -29,5 +29,15 @@ test("should show hotel search results", async ({ page }) => {
   await page.getByRole("button", { name: "Search" }).click();
 
   await expect(page.getByText("Hotels found in Test City")).toBeVisible();
-  await expect(page.getByText("Test Hotel")).toBeVisible();
+  await expect(page.getByText("Test Hotel 10/07/2024")).toBeVisible();
 });
+
+test("should show hotel details", async ({ page }) => {
+  await page.goto(UI_URL);
+  await page.getByPlaceholder("Where are you going?").fill("Test City");
+  await page.getByRole("button", { name: "Search" }).click();
+
+  await page.getByText("Test Hotel 10/07/2024").click();
+  await expect(page).toHaveURL(/detail/);
+  await expect(page.getByRole("button", {name:"Book Now"})).toBeVisible();
+})

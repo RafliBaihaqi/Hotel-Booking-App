@@ -25,7 +25,7 @@ test.beforeEach(async ({ page }) => {
 
 test("should allow user to create a hotel", async ({ page }) => {
   await page.goto(`${UI_URL}/add-hotel`);
-  await page.locator("[name=name]").fill("Test Hotel");
+  await page.locator("[name=name]").fill("Test Hotel 10/07/2024");
   await page.locator("[name=city]").fill("Test City");
   await page.locator("[name=country]").fill("Test Country");
   await page
@@ -54,7 +54,7 @@ test("should allow user to create a hotel", async ({ page }) => {
 test("should display hotels", async ({ page }) => {
   await page.goto(`${UI_URL}/my-hotels`);
 
-  await expect(page.getByText("Test Hotel")).toBeVisible();
+  await expect(page.getByText("Test Hotel 10/07/2024")).toBeVisible();
   await expect(page.getByText("Test this is the description")).toBeVisible();
   await expect(page.getByText("Test City, Test Country")).toBeVisible();
   await expect(page.getByText("Campsite")).toBeVisible();
