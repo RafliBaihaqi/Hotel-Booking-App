@@ -20,8 +20,8 @@ cloudinary.config({
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
   .then(() =>
-    console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING)
-  );
+    console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING
+  ));
 
 // Create express instance
 const app = express();
@@ -45,6 +45,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/my-hotels", myHotelsRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
+
 //Pass on any req to our url that are not endpoint and let the react-router-dom
 app.get("*", (req: Request, res: Response) => {
   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));

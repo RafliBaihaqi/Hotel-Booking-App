@@ -1,0 +1,51 @@
+name: Deploy to Kubernetes
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and Push Backend Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./backend  
+          push: true
+          tags: |
+            ghcr.io/dreamsofcode-io/booking-backend:latest
+            ghcr.io/dreamsofcode-io/booking-backend:${{ github.sha }}
+
+      - name: Build and Push Frontend Image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend  
+          push: true
+          tags: |
+            ghcr.io/dreamsofcode-io/booking-frontend:latest
+            ghcr.io/dreamsofcode-io/booking-frontend:${{ github.sha }}
+
+      - name: Set Up Kubectl
+        run: |
+          echo "${{ secrets.KUBECONFIG_CONTENT }}" > kubeconfig
+          export KUBECONFIG=$PWD/kubeconfig
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f k8s/backend-deployment.yaml
+          kubectl apply -f k8s/frontend-deployment.yaml
+          kubectl apply -f k8s/backend-service.yaml
+          kubectl apply -f k8s/frontend-service.yaml

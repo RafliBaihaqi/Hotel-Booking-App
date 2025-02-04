@@ -3,7 +3,6 @@ import Hero from "../components/hero";
 import Footer from "../components/footer";
 import SearchBar from "../components/SearchBar";
 
-//Define children properties
 interface Props {
   children: React.ReactNode;
 }
