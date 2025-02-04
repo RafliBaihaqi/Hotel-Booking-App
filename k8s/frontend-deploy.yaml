@@ -18,14 +18,14 @@ spec:
           ports:
             - containerPort: 80
           env:
-        - name: VITE_API_BASE_URL
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: VITE_API_BASE_URL
+            - name: VITE_API_BASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: VITE_API_BASE_URL
 
-        - name: VITE_STRIPE_PUB_KEY
-          valueFrom:
-            configMapKeyRef:
-              name: frontend-config
-              key: VITE_STRIPE_PUB_KEY
+            - name: VITE_STRIPE_PUB_KEY
+              valueFrom:
+                configMapKeyRef:
+                  name: frontend-config
+                  key: VITE_STRIPE_PUB_KEY

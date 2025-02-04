@@ -18,44 +18,44 @@ spec:
           ports:
             - containerPort: 5000
           env:
-        - name: FRONTEND_URL
-          valueFrom:
-            configMapKeyRef:
-              name: app-config
-              key: FRONTEND_URL
+            - name: FRONTEND_URL
+                valueFrom:
+                  configMapKeyRef:
+                    name: app-config
+                    key: FRONTEND_URL
 
-        - name: MONGODB_CONNECTION_STRING
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: MONGODB_CONNECTION_STRING
+            - name: MONGODB_CONNECTION_STRING
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: MONGODB_CONNECTION_STRING
 
-        - name: JWT_SECRET_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: JWT_SECRET_KEY
+            - name: JWT_SECRET_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: JWT_SECRET_KEY
 
-        - name: CLOUDINARY_CLOUD_NAME
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: CLOUDINARY_CLOUD_NAME
+            - name: CLOUDINARY_CLOUD_NAME
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: CLOUDINARY_CLOUD_NAME
 
-        - name: CLOUDINARY_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: CLOUDINARY_API_KEY
+            - name: CLOUDINARY_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: CLOUDINARY_API_KEY
 
-        - name: CLOUDINARY_API_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: CLOUDINARY_API_SECRET
+            - name: CLOUDINARY_API_SECRET
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: CLOUDINARY_API_SECRET
 
-        - name: STRIPE_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: app-secrets
-              key: STRIPE_API_KEY
+            - name: STRIPE_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: app-secrets
+                    key: STRIPE_API_KEY
