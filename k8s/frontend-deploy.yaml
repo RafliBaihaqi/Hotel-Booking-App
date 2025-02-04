@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: raflibaihaqi/booking-frontend:latest
+          image: ghcr.io/raflibaihaqi/booking-frontend:latest
           ports:
             - containerPort: 80
           env:

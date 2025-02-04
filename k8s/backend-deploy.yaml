@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: raflibaihaqi/booking-backend:latest
+          image: ghcr.io/raflibaihaqi/booking-backend:latest
           ports:
             - containerPort: 5000
           env:
