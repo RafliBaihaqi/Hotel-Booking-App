@@ -1,11 +1,16 @@
+# First stage: Build frontend
 FROM node:18 AS builder
 WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm install
 COPY . .
+ENV NODE_ENV=production
 RUN npm run build
 
-# Use Nginx to serve the static files
+# Debugging: Print build folder contents
+RUN ls -la /app/build
+
+# Second stage: Serve frontend with Nginx
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
 EXPOSE 80
