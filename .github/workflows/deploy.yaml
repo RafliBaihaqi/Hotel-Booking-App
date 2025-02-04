@@ -44,7 +44,7 @@ jobs:
 
       - name: Debug SSH Key
         run: |
-          ls -la ~/.ssh
+          ls ~/.ssh
           cat ~/.ssh/id_ed25519
           ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no rafli@${{ secrets.VPS_IP }} "echo SSH Connection Success"
 
