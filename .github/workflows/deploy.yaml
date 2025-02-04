@@ -42,11 +42,7 @@ jobs:
             ghcr.io/raflibaihaqi/booking-frontend:latest
             ghcr.io/raflibaihaqi/booking-frontend:${{ github.sha }}
 
-      - name: Debug SSH Key
-        run: |
-          ls ~/.ssh
-          cat ~/.ssh/id_ed25519
-          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no rafli@${{ secrets.VPS_IP }} "echo SSH Connection Success"
+      
 
 
       - name: Set Up SSH Key
@@ -56,6 +52,12 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
 
+      - name: Debug SSH Key
+        run: |
+          ls -la ~/.ssh
+          cat ~/.ssh/id_ed25519
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no rafli@${{ secrets.VPS_IP }} "echo SSH Connection Success"
+          
       - name: Deploy to Kubernetes via SSH
         run: |
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 rafli@${{ secrets.VPS_IP }} << 'EOF'
