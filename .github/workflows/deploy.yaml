@@ -57,12 +57,22 @@ jobs:
             set -e  
             export KUBECONFIG=~/.kube/config
 
+
             echo "🔥 Deleting Old Kubernetes Pods and Services..."
             kubectl delete deployment backend --ignore-not-found=true
             kubectl delete deployment frontend --ignore-not-found=true
+            kubectl delete pod --all 
             kubectl delete service backend-service --ignore-not-found=true
             kubectl delete service frontend-service --ignore-not-found=true
 
+            echo "🔑 Creating Image Pull Secret..."
+            kubectl create secret docker-registry ghcr-secret \
+              --docker-server=ghcr.io \
+              --docker-username=${{ secrets.GHCR_USERNAME }} \
+              --docker-password=${{ secrets.GHCR_TOKEN }} \
+              --dry-run=client -o yaml | kubectl apply -f -
+
+              
             echo "🚀 Creating Kubernetes Secrets..."
             kubectl create secret generic app-secrets \
               --from-literal=MONGODB_CONNECTION_STRING="${{ secrets.MONGODB_CONNECTION_STRING }}" \

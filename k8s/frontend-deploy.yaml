@@ -14,7 +14,10 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: ghcr.io/raflibaihaqi/booking-frontend:latest
+          image: ghcr.io/raflibaihaqi/booking-frontend:${GIT_COMMIT_HASH:-latest}
+          imagePullPolicy: Always
+          imagePullSecrets:
+            - name: ghcr-secret
           ports:
             - containerPort: 80
           env:
