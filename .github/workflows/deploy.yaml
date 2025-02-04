@@ -42,6 +42,13 @@ jobs:
             ghcr.io/raflibaihaqi/booking-frontend:latest
             ghcr.io/raflibaihaqi/booking-frontend:${{ github.sha }}
 
+      - name: Debug SSH Key
+        run: |
+          ls -la ~/.ssh
+          cat ~/.ssh/id_ed25519
+          ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no rafli@${{ secrets.VPS_IP }} "echo SSH Connection Success"
+
+
       - name: Set Up SSH Key
         run: |
           mkdir -p ~/.ssh
