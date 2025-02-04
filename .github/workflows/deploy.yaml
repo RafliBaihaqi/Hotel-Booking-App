@@ -9,6 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+          contents: read
+          packages: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -22,9 +26,6 @@ jobs:
 
       - name: Build and Push Backend Image
         uses: docker/build-push-action@v6
-        permissions:
-          contents: read
-          packages: write
         with:
           context: ./backend  
           push: true
@@ -34,9 +35,6 @@ jobs:
 
       - name: Build and Push Frontend Image
         uses: docker/build-push-action@v6
-        permissions:
-          contents: read
-          packages: write
         with:
           context: ./frontend  
           push: true
