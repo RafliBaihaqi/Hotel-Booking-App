@@ -9,6 +9,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+          contents: read
+          packages: write
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -44,6 +48,7 @@ jobs:
           echo "${{ secrets.VPS_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -H ${{ secrets.VPS_IP }} >> ~/.ssh/known_hosts
+
 
       - name: Deploy to Kubernetes via SSH
         run: |
