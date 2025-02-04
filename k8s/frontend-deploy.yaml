@@ -17,7 +17,7 @@ spec:
           image: your-dockerhub-username/frontend:latest
           ports:
             - containerPort: 80
-      env:
+          env:
         - name: VITE_API_BASE_URL
           valueFrom:
             configMapKeyRef:

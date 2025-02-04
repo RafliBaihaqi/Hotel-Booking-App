@@ -17,7 +17,7 @@ spec:
           image: your-dockerhub-username/backend:latest
           ports:
             - containerPort: 5000
-      env:
+          env:
         - name: FRONTEND_URL
           valueFrom:
             configMapKeyRef:
