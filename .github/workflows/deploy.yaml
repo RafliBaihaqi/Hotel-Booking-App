@@ -59,7 +59,10 @@ jobs:
 
             echo "🔥 Syncing latest K8s manifests..."
             rm -rf /home/rafli/Hotel-Booking-App/k8s
-            git -C /home/rafli/Hotel-Booking-App pull origin main
+            cd /home/rafli/Hotel-Booking-App
+            git fetch origin main
+            git reset --hard origin/main   
+            git pull origin main 
 
             echo "🔥 Deleting Old Kubernetes Deployments..."
             kubectl delete deployment backend --ignore-not-found=true
