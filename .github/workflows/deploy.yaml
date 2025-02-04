@@ -76,10 +76,10 @@ jobs:
               --from-literal=VITE_STRIPE_PUB_KEY="${{ secrets.VITE_STRIPE_PUB_KEY }}" \
               --dry-run=client -o yaml | kubectl apply -f -
 
-            minikube kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/app-config.yaml
-            minikube kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-deploy.yaml
-            minikube kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml
-            minikube kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml
-            minikube kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-service.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/app-config.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-deploy.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-service.yaml
           EOF
 
