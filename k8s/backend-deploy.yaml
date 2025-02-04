@@ -12,12 +12,13 @@ spec:
       labels:
         app: backend
     spec:
+      imagePullSecrets:
+        - name: ghcr-secret
       containers:
         - name: backend
           image: ghcr.io/raflibaihaqi/booking-backend:${GIT_COMMIT_HASH:-latest}
           imagePullPolicy: Always
-          imagePullSecrets:
-            - name: ghcr-secret
+          
           ports:
             - containerPort: 5000
           env:
