@@ -57,22 +57,23 @@ jobs:
             set -e  
             export KUBECONFIG=~/.kube/config
 
+            echo "🔥 Syncing latest K8s manifests..."
+            rm -rf /home/rafli/Hotel-Booking-App/k8s
+            git -C /home/rafli/Hotel-Booking-App pull origin main
 
-            echo "🔥 Deleting Old Kubernetes Pods and Services..."
+            echo "🔥 Deleting Old Kubernetes Deployments..."
             kubectl delete deployment backend --ignore-not-found=true
             kubectl delete deployment frontend --ignore-not-found=true
-            kubectl delete pod --all 
+            kubectl delete pod --all
             kubectl delete service backend-service --ignore-not-found=true
             kubectl delete service frontend-service --ignore-not-found=true
 
-            echo "🔑 Creating Image Pull Secret..."
+            echo "🔑 Creating Kubernetes Secret for GitHub Container Registry (GHCR)..."
             kubectl create secret docker-registry ghcr-secret \
               --docker-server=ghcr.io \
-              --docker-username=${{ secrets.GHCR_USERNAME }} \
-              --docker-password=${{ secrets.GHCR_TOKEN }} \
-              --dry-run=client -o yaml | kubectl apply -f -
+              --docker-username=RafliBaihaqi \
+              --docker-password=${{ secrets.GITHUB_TOKEN }} --dry-run=client -o yaml | kubectl apply -f -
 
-              
             echo "🚀 Creating Kubernetes Secrets..."
             kubectl create secret generic app-secrets \
               --from-literal=MONGODB_CONNECTION_STRING="${{ secrets.MONGODB_CONNECTION_STRING }}" \
@@ -85,12 +86,12 @@ jobs:
               --dry-run=client -o yaml | kubectl apply -f -
 
             echo "📦 Deploying New Kubernetes Configuration..."
-            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/app-config.yaml
-            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-deploy.yaml
-            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml
-            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml
-            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-service.yaml
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-deploy.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-service.yaml --force
 
             echo "✅ Deployment Completed Successfully!"
           EOF
+
 
