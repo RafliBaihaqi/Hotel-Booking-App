@@ -16,7 +16,7 @@ spec:
         - name: ghcr-secret
       containers:
         - name: backend
-          image: ghcr.io/raflibaihaqi/booking-backend:${GIT_COMMIT_HASH:-latest}
+          image: ghcr.io/raflibaihaqi/booking-backend:latest
           imagePullPolicy: Always
           
           ports:
