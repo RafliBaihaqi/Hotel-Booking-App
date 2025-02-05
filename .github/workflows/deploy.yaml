@@ -91,6 +91,7 @@ jobs:
               --dry-run=client -o yaml | kubectl apply -f -
 
             echo "📦 Deploying New Kubernetes Configuration..."
+            kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/app-config.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-deploy.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml --force
