@@ -9,5 +9,6 @@ spec:
     - protocol: TCP
       port: 5000
       targetPort: 5000
-      nodePort: 30050
-  type: NodePort
+  type: LoadBalancer
+  externalIPs:
+    - 167.86.71.68
