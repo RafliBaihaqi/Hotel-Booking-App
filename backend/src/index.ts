@@ -20,8 +20,8 @@ cloudinary.config({
 mongoose
   .connect(process.env.MONGODB_CONNECTION_STRING as string)
   .then(() =>
-    console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING
-  ));
+    console.log("Connected to Database:", process.env.MONGODB_CONNECTION_STRING)
+  );
 
 // Create express instance
 const app = express();
@@ -32,13 +32,25 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: ["http://frontend-service", "http://167.86.71.68:8081"],
+    origin: (origin, callback) => {
+      const allowedOrigins = [
+        "http://frontend-service",
+        "http://167.86.71.68:8081",
+      ];
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("CORS not allowed"));
+      }
+    },
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders:
+      "Origin, X-Requested-With, Content-Type, Accept, Authorization",
     credentials: true,
   })
 );
 
-
-
+app.options("*", cors());
 //Handle user routes
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
@@ -53,6 +65,6 @@ app.use("/api/my-bookings", bookingRoutes);
 //   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
 // });
 
-app.listen(5000, () => {
+app.listen(5000, "0.0.0.0", () => {
   console.log("Server is running on localhosts:5000");
 });
