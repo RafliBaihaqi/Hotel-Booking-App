@@ -8,7 +8,9 @@ RUN npm install
 
 COPY . .
 
-RUN npm build
+ENV NODE_ENV=production
+
+RUN npm run build
 
 EXPOSE 5000
 
