@@ -30,6 +30,6 @@ spec:
 
             - name: VITE_STRIPE_PUB_KEY
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   name: app-secrets
                   key: VITE_STRIPE_PUB_KEY
