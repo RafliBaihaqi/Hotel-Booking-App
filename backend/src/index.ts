@@ -37,7 +37,7 @@ app.use(
   })
 );
 
-app.use(express.static(path.join(__dirname, "../../frontend/dist"))); //Serve static assets
+
 
 //Handle user routes
 app.use("/api/users", userRoutes);
@@ -46,10 +46,12 @@ app.use("/api/my-hotels", myHotelsRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
 
-//Pass on any req to our url that are not endpoint and let the react-router-dom
-app.get("*", (req: Request, res: Response) => {
-  res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "../../frontend/dist"))); //Serve static assets
+
+// //Pass on any req to our url that are not endpoint and let the react-router-dom
+// app.get("*", (req: Request, res: Response) => {
+//   res.sendFile(path.join(__dirname, "../../frontend/dist/index.html"));
+// });
 
 app.listen(5000, () => {
   console.log("Server is running on localhosts:5000");
