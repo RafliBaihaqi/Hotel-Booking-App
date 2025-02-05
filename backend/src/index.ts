@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL || "http://167.86.71.68:8081"],
+    origin: ["http://frontend-service", "http://167.86.71.68:8081"],
     credentials: true,
   })
 );
