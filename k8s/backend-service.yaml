@@ -3,12 +3,13 @@ kind: Service
 metadata:
   name: backend-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: backend
   ports:
     - protocol: TCP
       port: 5000
       targetPort: 5000
+      nodePort: 30050
   externalIPs:
     - 167.86.71.68
