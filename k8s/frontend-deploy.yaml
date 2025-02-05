@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: Always
           
           ports:
-            - containerPort: 80
+            - containerPort: 8080
           env:
             - name: VITE_API_BASE_URL
               valueFrom:
