@@ -37,7 +37,7 @@ app.use(
         "http://frontend-service",
         "http://167.86.71.68:8081",
         "http://167.86.71.68:30050",
-        "http://167.86.71.68:5000"
+        "http://167.86.71.68:5001"
       ];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
