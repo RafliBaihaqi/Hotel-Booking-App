@@ -38,7 +38,7 @@ app.use(
         "http://167.86.71.68:8081",
         "http://167.86.71.68:30050",
         "http://167.86.71.68:5001",
-        "http://hotelify.raflibaihaqi.me"
+        "https://hotelify.raflibaihaqi.me"
       ];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
