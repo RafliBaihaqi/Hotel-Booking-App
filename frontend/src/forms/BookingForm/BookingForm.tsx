@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { PaymentIntentResponse } from "../../../../backend/src/shared/types";
+import { PaymentIntentResponse, UserType } from "../../../../backend/src/shared/types";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { StripeCardElement } from "@stripe/stripe-js";
 import { useSearchContext } from "../../contexts/SearchContext";
@@ -8,7 +8,7 @@ import { useMutation } from "react-query";
 import * as apiClient from "../../api-clients";
 import { useAppContext } from "../../contexts/AppContext";
 type Props = {
-  currentUSer: UserType;
+  currentUser: UserType;
   paymentIntent: PaymentIntentResponse;
 };
 

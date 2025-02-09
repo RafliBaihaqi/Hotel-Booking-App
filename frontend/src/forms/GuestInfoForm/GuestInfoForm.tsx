@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import DatePicker from "react-datepicker";
 import { useSearchContext } from "../../contexts/SearchContext";
 import { useAppContext } from "../../contexts/AppContext";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import {  UserType } from "../../../../backend/src/shared/types";
+import { useLocation, useNavigate } from "react-router-dom";
+// import {  UserType } from "../../../../backend/src/shared/types";
 
 type Props = {
   hotelId: string;
   pricePerNight: number;
-  user:UserType;
+  // user:UserType;
 };
 
 type GuestInfoFormData = {
@@ -56,15 +56,10 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   };
 
   const onSubmit = (data: GuestInfoFormData) => {
-    search.saveSearchValues(
-      "",
-      data.checkIn,
-      data.checkOut,
-      data.adultCount,
-      data.childCount
-    );
-    navigate(`/hote/${hotelId}/booking`);
+    search.saveSearchValues("", data.checkIn, data.checkOut, data.adultCount, data.childCount);
+    navigate(`/hotel/${hotelId}/booking`, { state: data });
   };
+  
 
   return (
     <div className="flex flex-col p-4 bg-blue-200 gap-4">
@@ -79,7 +74,9 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             <DatePicker
               required
               selected={checkIn}
-              onChange={(date) => setValue("checkIn", date as Date)}
+              onChange={(date) => {
+                setValue("checkIn", date as Date, { shouldValidate: true });
+              }}
               selectsStart
               startDate={checkIn}
               endDate={checkOut}
@@ -94,7 +91,9 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             <DatePicker
               required
               selected={checkOut}
-              onChange={(date) => setValue("checkOut", date as Date)}
+              onChange={(date) => {
+                setValue("checkOut", date as Date, { shouldValidate: true });
+              }}
               selectsStart
               startDate={checkIn}
               endDate={checkOut}
@@ -142,9 +141,12 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
             )}
           </div>
           {isLoggedIn ? (
-            <Link to={`/hotel/${hotelId}/booking`} className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
+            <button
+              type="submit"
+              className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl"
+            >
               Book Now
-            </Link>
+            </button>
           ) : (
             <button className="bg-blue-600 text-white h-full p-2 font-bold hover:bg-blue-500 text-xl">
               Sign In to Book

@@ -14,6 +14,8 @@ const Booking = () => {
   const { stripePromise } = useAppContext();
   const [numberOfNights, setnumberOfNights] = useState<number>(0);
 
+
+
   useEffect(() => {
     if (search.checkIn && search.checkOut) {
       const nights =
@@ -37,6 +39,9 @@ const Booking = () => {
     apiClient.fetchCurrentUser
   );
 
+  
+
+
   const { data: paymentIntentData } = useQuery(
     "createPaymentIntent",
     () =>
@@ -46,6 +51,10 @@ const Booking = () => {
       ),
     { enabled: !!hotelId && numberOfNights > 0 }
   );
+
+
+
+
   if (!hotel) {
     return <></>;
   }

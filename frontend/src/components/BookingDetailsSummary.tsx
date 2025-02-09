@@ -39,7 +39,7 @@ const BookingDetailsSummary = ({
         <div className="font-bold">{numberOfNights} nights</div>
       </div>
       <div>
-        Gusests
+        Guests
         <div className="font-bold">
           {adultCount} adults & {childCount} children
         </div>
