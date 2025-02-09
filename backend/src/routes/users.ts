@@ -53,17 +53,17 @@ router.post(
       user = new User(req.body);
       await user.save();
       // Return a success message
-      const token = jwt.sign(
-        { userId: user.id },
-        process.env.JWT_SECRET_KEY as string,
-        { expiresIn: "1d" }
-      );
-      // Send the token in a cookie
-      res.cookie("auth_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 86400000,
-      });
+      // const token = jwt.sign(
+      //   { userId: user.id },
+      //   process.env.JWT_SECRET_KEY as string,
+      //   { expiresIn: "1d" }
+      // );
+      // // Send the token in a cookie
+      // res.cookie("auth_token", token, {
+      //   httpOnly: true,
+      //   secure: process.env.NODE_ENV === "production",
+      //   maxAge: 86400000,
+      // });
 
       // Send the user object as response
       return res.status(200).send({ message: "User Registered!" });
