@@ -15,6 +15,7 @@ cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
 });
 
 mongoose
@@ -38,7 +39,8 @@ app.use(
         "http://167.86.71.68:8081",
         "http://167.86.71.68:30050",
         "http://167.86.71.68:5001",
-        "https://hotelify.raflibaihaqi.me"
+        "https://hotelify.raflibaihaqi.me",
+        "http://localhost:5173"
       ];
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
