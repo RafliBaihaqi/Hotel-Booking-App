@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: app-config
 data:
-  FRONTEND_URL: "http://frontend-service"
-  VITE_API_BASE_URL: "http://backend-service:5000"
+  FRONTEND_URL: "https://frontend-service"
+  VITE_API_BASE_URL: "https://backend-service:5000"
