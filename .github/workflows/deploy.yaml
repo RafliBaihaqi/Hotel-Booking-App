@@ -105,6 +105,10 @@ jobs:
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-deploy.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/backend-service.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/k8s/frontend-service.yaml --force
+            kubectl create -f /home/rafli/Hotel-Booking-App/monitoring/clusterRole.yaml --force
+            kubectl create -f /home/rafli/Hotel-Booking-App/monitoring/config-map.yaml --force
+            kubectl create -f /home/rafli/Hotel-Booking-App/monitoring/prometheus-deployment.yaml --force
+            kubectl create -f /home/rafli/Hotel-Booking-App/monitoring/prometheus-service.yaml --namespace=monitoring --force
 
             echo "✅ Deployment Completed Successfully!"
           EOF
