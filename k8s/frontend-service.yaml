@@ -12,4 +12,4 @@ spec:
       nodePort: 32310
   type: NodePort
   externalIPs:
-    - 167.86.71.68
+    - 192.168.49.2

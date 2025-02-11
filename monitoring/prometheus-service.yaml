@@ -15,4 +15,4 @@ spec:
       targetPort: 9090 
       nodePort: 30000
   externalIPs:
-    - 167.86.71.68
+    - 192.168.49.2
