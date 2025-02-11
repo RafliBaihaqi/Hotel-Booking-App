@@ -8,13 +8,15 @@ metadata:
   name: kube-state-metrics
   namespace: kube-system
 spec:
-  clusterIP: ""
+  type: NodePort  # 👈 Exposes service externally
   ports:
-  - name: http-metrics
-    port: 8080
-    targetPort: http-metrics
-  - name: telemetry
-    port: 8082
-    targetPort: telemetry
+    - name: http-metrics
+      port: 8080
+      targetPort: http-metrics
+      nodePort: 30080  # 👈 Choose a port between 30000-32767
+    - name: telemetry
+      port: 8081
+      targetPort: telemetry
+      nodePort: 30082  # 👈 Choose a port
   selector:
     app.kubernetes.io/name: kube-state-metrics

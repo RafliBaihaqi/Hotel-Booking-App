@@ -36,7 +36,7 @@ app.use(
     origin: (origin, callback) => {
       const allowedOrigins = [
         "http://frontend-service",
-        "http://167.86.71.68:8081",
+        "http://167.86.71.68:8082",
         "http://167.86.71.68:30050",
         "http://167.86.71.68:5001",
         "https://hotelify.raflibaihaqi.me",
