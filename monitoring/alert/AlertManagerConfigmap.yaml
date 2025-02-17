@@ -31,3 +31,7 @@ data:
           auth_password: ykhq skpm srao nxxo
           send_resolved: true
           require_tls: true
+    - name: slack_demo
+      slack_configs:
+        - api_url: https://hooks.slack.com/services/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
+          channel: '#hotel-test'
