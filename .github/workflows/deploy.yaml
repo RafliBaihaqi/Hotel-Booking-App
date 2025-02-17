@@ -110,6 +110,9 @@ jobs:
             kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/prometheus-deployment.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/prometheus-service.yaml --namespace=monitoring --force
             kubectl apply -k /home/rafli/Hotel-Booking-App/monitoring/kube-state-metrics/ --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/grafana/grafana-datasource-config.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/grafana/deployment.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/grafana/service.yaml --force
             echo "✅ Deployment Completed Successfully!"
           EOF
 
