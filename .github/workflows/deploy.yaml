@@ -115,6 +115,10 @@ jobs:
             kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/grafana/service.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/node-exporter/daemonset.yaml --force
             kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/node-exporter/service.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/alert/AlertManagerConfigmap.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/alert/AlertTemplateConfigmap.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/alert/Deployment.yaml --force
+            kubectl apply -f /home/rafli/Hotel-Booking-App/monitoring/alert/Service.yaml --force
             echo "✅ Deployment Completed Successfully!"
           EOF
 
