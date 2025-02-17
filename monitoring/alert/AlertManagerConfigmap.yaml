@@ -24,12 +24,10 @@ data:
     receivers:
     - name: alert-emailer
       email_configs:
-      - to: demo@devopscube.com
-        send_resolved: false
-        from: from-email@email.com
-        smarthost: smtp.eample.com:25
-        require_tls: false
-    - name: slack_demo
-      slack_configs:
-      - api_url: https://hooks.slack.com/services/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sz4Qk
-        channel: '#devopscube-demo'
+        - to: baihaqirafli30@gmail.com
+          from: baihaqirafli30@gmail.com
+          smarthost: smtp.gmail.com:587
+          auth_username: baihaqirafli30@gmail.com
+          auth_password: ykhq skpm srao nxxo
+          send_resolved: true
+          require_tls: true
