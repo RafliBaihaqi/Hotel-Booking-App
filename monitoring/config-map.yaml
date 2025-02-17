@@ -33,7 +33,7 @@ data:
       - job_name: 'hotelify-metrics'
         metrics_path: '/api/metrics'
         static_configs:
-        - targets: ['backend.hotelify.raflibaihaqi.me:5001']
+        - targets: ['backend.hotelify.raflibaihaqi.me']
       - job_name: 'node-exporter'
         kubernetes_sd_configs:
           - role: endpoints

@@ -4,5 +4,5 @@ metadata:
   name: app-config
 data:
   FRONTEND_URL: "https://frontend-service"
-  VITE_API_BASE_URL: "https://backend.hotelify.raflibaihaqi.me:5001"
+  VITE_API_BASE_URL: "https://backend.hotelify.raflibaihaqi.me"
 
