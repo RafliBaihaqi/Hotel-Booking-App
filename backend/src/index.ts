@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth";
 import myHotelsRoutes from "./routes/my-hotels"; // Import myHotelsRoutes module
 import hotelRoutes from "./routes/hotels"; // Import hotelRoutes
 import bookingRoutes from "./routes/my-booking"; // Import bookingRoutes
+import monitoringRoutes from "./routes/monitoring"; // Import bookingRoutes
 import cookieParser from "cookie-parser";
 import path from "path";
 import { v2 as cloudinary } from "cloudinary";
@@ -62,6 +63,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/my-hotels", myHotelsRoutes);
 app.use("/api/hotels", hotelRoutes);
 app.use("/api/my-bookings", bookingRoutes);
+app.use("/api/metrics", monitoringRoutes);
 
 // app.use(express.static(path.join(__dirname, "../../frontend/dist"))); //Serve static assets
 

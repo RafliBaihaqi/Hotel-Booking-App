@@ -30,6 +30,10 @@ data:
         - targets:
           - "alertmanager.monitoring.svc:9093"
     scrape_configs:
+      - job_name: 'hotelify-metrics'
+        metrics_path: '/api/metrics'
+        static_configs:
+        - targets: ['backend.hotelify.raflibaihaqi.me:5001']
       - job_name: 'node-exporter'
         kubernetes_sd_configs:
           - role: endpoints
